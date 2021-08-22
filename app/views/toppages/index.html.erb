@@ -1,0 +1,31 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_with(model: @kurarecord, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :clock, 'お世話時刻' %>
+          <%= f.datetime_local_field :clock, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :feed, '餌摂取量(g)' %>
+          <%= f.number_field :feed, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :content, 'その他のお世話' %>
+          <%= f.text_area :content, class: 'form-control', rows: 3 %>
+        </div>
+        <%= f.submit 'お世話記録書き込み', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'kurarecords/kurarecords', kurarecords: @kurarecords %>
+    </div>
+  </div>
+<% else %>
+ <div class="center jumbotron">
+   <div class="text-center">
+     <h1>クラ様お世話記録Webアプリへようこそ </h1>
+     <%= link_to 'お世話係の登録はこちら！', signup_path, class: 'btn btn-lg btn-primary' %>
+   </div>
+  </div>
+<% end %>

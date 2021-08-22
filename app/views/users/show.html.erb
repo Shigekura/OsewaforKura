@@ -1,0 +1,20 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= @user.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+        <%= link_to "編集", edit_user_path(@user), class: 'btn btn-warning btn-sm' %>
+        <%= link_to "削除（この機能は未完成です）", @user, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+      </div>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">お世話記録  <span class="badge badge-secondary"><%= @count_kurarecords %></span></a></li>
+    </ul>
+    <%= render 'kurarecords/kurarecords', kurarecords: @kurarecords %>
+  </div>
+</div>

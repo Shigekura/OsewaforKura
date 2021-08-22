@@ -1,0 +1,23 @@
+<ul class="list-unstyled">
+  <% kurarecords.each do |kurarecord| %>
+    <li class="media mb-3">
+      <img class="mr-2 rounded" src="<%= gravatar_url(kurarecord.user, { size: 50 }) %>" alt="">
+      <div class="media-body">
+        <div>
+          <%= link_to kurarecord.user.name, user_path(kurarecord.user) %><span class="text-muted"> による <%= kurarecord.clock %>のお世話 </span>
+        </div>
+        <div>
+          <p class="mb-0"> 餌摂取量 <%= kurarecord.feed %> g </p>
+          <p class="mb-0"> お世話内容 <%= kurarecord.content %></p>
+        </div>
+        <div>
+          <% if current_user == kurarecord.user %>
+            <%= link_to "編集", edit_kurarecord_path(kurarecord), class: 'btn btn-warning btn-sm' %>
+            <%= link_to "削除", kurarecord, method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate kurarecords %>
+</ul>
