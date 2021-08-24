@@ -6,7 +6,9 @@ class ToppagesController < ApplicationController
       dayfeed=0
       @kurarecords.each do |kurarecord|
         if kurarecord.clock > Time.current-86400
-          dayfeed=dayfeed+kurarecord.feed
+          unless kurarecord.feed.nil?
+            dayfeed=dayfeed+kurarecord.feed
+          end
         end
         @dayfeed=dayfeed
       end
