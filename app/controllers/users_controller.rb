@@ -23,9 +23,7 @@ class UsersController < ApplicationController
   end
     #ユーザー登録したら同時にログインすべきかもしれないが、やめておく
   def edit
-    #@user = User.idはよくないと思う
     @user = User.find(params[:id])
-    #既存データがプリセットされているはず
   end
   def update
     @user = User.find(params[:id])

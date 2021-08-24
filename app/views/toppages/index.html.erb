@@ -1,6 +1,8 @@
 <% if logged_in? %>
   <div class="row">
     <aside class="col-sm-4">
+      <% if @dayfeed > 45 %> <p class="mb-0"> クラ様はこの24時間にずいぶん召し上がりました </p> <% end %>
+      <% if @dayfeed < 35 %> <p class="mb-0"> クラ様はこの24時間にあまり召し上がっていません </p> <% end %>
       <%= form_with(model: @kurarecord, local: true) do |f| %>
         <div class="form-group">
           <%= f.label :clock, 'お世話時刻' %>
